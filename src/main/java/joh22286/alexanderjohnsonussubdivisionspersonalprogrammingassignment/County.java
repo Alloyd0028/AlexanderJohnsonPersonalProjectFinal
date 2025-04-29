@@ -26,6 +26,10 @@ public class County extends Subdivisions{
     public String getCountySeat() {
         return countySeat;
     }
+    // Urban is defined as a population of 500,000 or more.
+    public boolean getIsUrban(){
+        return isUrban;
+    }
 
     // might not be necessary
     public String getParentState(){

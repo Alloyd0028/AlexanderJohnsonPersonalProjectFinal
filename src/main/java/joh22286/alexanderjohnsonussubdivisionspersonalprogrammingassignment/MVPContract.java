@@ -8,6 +8,8 @@ public interface MVPContract {
     interface Presenter {
         void loadState(String stateName);
 
+        void loadCounty(String countyName) ;
+
         void onPopulationChecked();
 
         void onLandAreaChecked();
@@ -18,11 +20,20 @@ public interface MVPContract {
 
         void onProjectedPopulationChecked();
 
+
+        //State Specific
         void onCapitalChecked();
 
         void onStateMottoChecked();
 
         void onYearAdmittedChecked();
+
+        // County Specific
+        void onCountySeatChecked();
+
+        void onIsUrbanChecked();
+
+        void onParentStateChecked();
     }
 
 
@@ -49,5 +60,10 @@ public interface MVPContract {
 
         void showYearAdmitted(Integer yearAdmitted);
 
+        void showCountySeat(String CountySeat);
+
+        void showIsUrban(boolean isUrban);
+
+        void showParentState(String parentState);
     }
 }

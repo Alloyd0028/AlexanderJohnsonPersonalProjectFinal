@@ -21,6 +21,7 @@ public class HelloApplication extends Application implements MVPContract.View {
 
     private Label resultLabel;
     private State state;
+    private County county;
 
     MVPContract.Presenter myPresenter;
 
@@ -34,7 +35,7 @@ public class HelloApplication extends Application implements MVPContract.View {
 
         resultLabel = new Label(); //cool idea for a label
 
-        Label messageLabel = new Label("Enter The Name of a US State and Receive Checked Information:");
+        Label messageLabel = new Label("Enter The Name of a US State or County and Receive Checked Information:");
 
         //To get the State's name so we can get the information about the state
         tf_StateField = new TextField();
@@ -91,9 +92,10 @@ public class HelloApplication extends Application implements MVPContract.View {
         myPresenter.onProjectedPopulationChecked();
     }
 
-    private void enterPressed(ActionEvent event) {
+    private void enterPressed(ActionEvent event){
         String subdivisionName = tf_StateField.getText();
         myPresenter.loadState(subdivisionName);
+        myPresenter.loadCounty(subdivisionName);
     }
 
     @Override
@@ -122,6 +124,7 @@ public class HelloApplication extends Application implements MVPContract.View {
 
     }
 
+    //State
     @Override
     public void showCapital(String capital) {
         resultLabel.setText("Capital: " + capital);
@@ -137,6 +140,23 @@ public class HelloApplication extends Application implements MVPContract.View {
     public void showYearAdmitted(Integer yearAdmitted) {
         resultLabel.setText("Year Admitted to the Union: " + yearAdmitted);
 
+    }
+
+    //County
+    @Override
+    public void showCountySeat(String countySeat) {
+        resultLabel.setText("County Seat: " + countySeat);
+    }
+
+    @Override
+    public void showIsUrban(boolean isUrban) {
+        resultLabel.setText("Is County Urban" + isUrban);
+
+    }
+
+    @Override
+    public void showParentState(String parentState) {
+        resultLabel.setText("State County Resides: " + parentState);
     }
 
     public static void main(String[] args) {
