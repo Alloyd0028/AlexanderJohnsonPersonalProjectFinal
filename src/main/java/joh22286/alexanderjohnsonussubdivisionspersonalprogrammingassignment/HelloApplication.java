@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,12 +32,17 @@ public class HelloApplication extends Application implements MVPContract.View {
 
         myPresenter = new SubdivisionPresenter(this);
 
+        resultLabel = new Label(); //cool idea for a label
 
         Label messageLabel = new Label("Enter The Name of a US State and Receive Checked Information:");
 
         //To get the State's name so we can get the information about the state
         tf_StateField = new TextField();
         tf_StateField.setPromptText("Enter State Name:");
+
+        //Button so typed state name will connect with the state data, hopefully
+        Button btnEnter = new Button("Enter");
+        btnEnter.setOnAction(this::enterPressed);
 
         // Check boxes so the suer can choose what they want to know
         CheckBox population = new CheckBox("Population:");
@@ -57,8 +63,7 @@ public class HelloApplication extends Application implements MVPContract.View {
 
         VBox vboxPane = new VBox(10);
         vboxPane.setPadding(new Insets(20, 30, 20, 30));
-        vboxPane.getChildren().addAll(messageLabel, tf_StateField, population,landArea, populationDensity, growthRate, futureProjectedPopulation);
-
+        vboxPane.getChildren().addAll(messageLabel, tf_StateField, btnEnter, population, landArea, populationDensity, growthRate, futureProjectedPopulation, resultLabel);
 
         // Set and show scene
         Scene scene = new Scene(vboxPane);
@@ -66,27 +71,29 @@ public class HelloApplication extends Application implements MVPContract.View {
         stage.show();
     }
 
-    private void futureProjectedPopulationChecked(ActionEvent actionEvent) {
-    }
-
-    private void growthRateChecked(ActionEvent actionEvent) {
-    }
-
-    private void populationDensityChecked(ActionEvent actionEvent) {
+    private void populationChecked(ActionEvent actionEvent) {
+        myPresenter.onPopulationChecked();
     }
 
     private void landAreaChecked(ActionEvent actionEvent) {
-
+        myPresenter.onLandAreaChecked();
     }
 
-    private void populationChecked(ActionEvent actionEvent) {
-        resultLabel.setText("Population: " + state.getPopulation());
+    private void populationDensityChecked(ActionEvent actionEvent) {
+        myPresenter.onPopulationDensityChecked();
     }
 
+    private void growthRateChecked(ActionEvent actionEvent) {
+        myPresenter.onGrowthRateChecked();
+    }
 
+    private void futureProjectedPopulationChecked(ActionEvent actionEvent) {
+        myPresenter.onProjectedPopulationChecked();
+    }
 
-    public static void main(String[] args) {
-        launch();
+    private void enterPressed(ActionEvent event) {
+        String subdivisionName = tf_StateField.getText();
+        myPresenter.loadState(subdivisionName);
     }
 
     @Override
@@ -111,7 +118,7 @@ public class HelloApplication extends Application implements MVPContract.View {
 
     @Override
     public void showProjectedPopulation(Float population, Float growthRate) {
-        resultLabel.setText("Projected Population: " + 50 * growthRate * population);
+        resultLabel.setText("Projected Population: " + (population +(growthRate * population)));
 
     }
 
@@ -130,5 +137,9 @@ public class HelloApplication extends Application implements MVPContract.View {
     public void showYearAdmitted(Integer yearAdmitted) {
         resultLabel.setText("Year Admitted to the Union: " + yearAdmitted);
 
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }

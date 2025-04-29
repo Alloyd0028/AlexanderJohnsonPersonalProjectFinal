@@ -4,12 +4,18 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
 
     // Maybe ArrayList to store the made States?
     private MVPContract.View view;
+    private State generalState;
+    private StateDatabase stateDatabase;
+    // Probably a good idea to make more hashmap databases
+
     private State s;
     private County c;
     // possibility for more subdivisions
 
     public SubdivisionPresenter(MVPContract.View view) {
         this.view = view;
+
+        this.stateDatabase = new StateDatabase();
 
         //States
         this.s = new State("Minnesota", 5_700_000f, 87_000f, 0.005f, "Saint Paul", "L'Etoile du Nord", 1858);
@@ -20,58 +26,71 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
         // make more counties
     }
 
+    private State getState(String subdivisionName) {
+        State state = stateDatabase.findStateByName(subdivisionName);
+        if (state == null) {
+            // Handle unknown state if name doesn't exist of isn't exact
+            System.out.println("State not found: " + subdivisionName);
+        }
+        return state;
+    }
 // Make Sure it Works For Counties Too!!!
+
+    @Override
+    public void loadState(String stateName) {
+        generalState = stateDatabase.findStateByName(stateName);
+        if (generalState == null) {
+            System.out.println("State not found.");
+        }
+    }
+
     public void onPopulationChecked() {
-        view.showPopulation(s.getPopulation());
+        if (generalState != null) {
+            view.showPopulation(generalState.getPopulation());
+        }
     }
 
     public void onLandAreaChecked() {
-        view.showLandArea(s.getLandArea());
+
+        if (generalState != null) {
+            view.showLandArea(generalState.getLandArea());
+        }
     }
 
     public void onPopulationDensityChecked() {
-        view.showPopulationDensity(s.calculatePopulationDensity(), s.calculatePopulationDensity()); // same thing twice for parameters
+        if (generalState != null) {
+            view.showPopulationDensity(generalState.getPopulation(), generalState.getLandArea());
+        }
+
     }
 
     public void onGrowthRateChecked() {
-        view.showGrowthRate(s.getGrowthRate());
+        if (generalState != null) {
+            view.showGrowthRate(generalState.getGrowthRate());
+        }
+
     }
 
     public void onProjectedPopulationChecked() {
-        view.showProjectedPopulation(s.calculateFuturePopulation(),s.calculateFuturePopulation());
+        if (generalState != null) {
+            view.showProjectedPopulation(generalState.getPopulation(), generalState.getGrowthRate() *50 );
+        }
     }
+
     public void onCapitalChecked() {
-        view.showCapital(s.getCapital());
+        if (generalState != null) {
+            view.showCapital(generalState.getCapital());
+        }
     }
     public void onStateMottoChecked() {
-        view.showStateMotto(s.getStateMotto());
+        if (generalState != null) {
+            view.showStateMotto(generalState.getStateMotto());
+        }
     }
     public void onYearAdmittedChecked() {
-        view.showYearAdmitted(s.getYearAdmitted());
+        if (generalState != null) {
+            view.showYearAdmitted(generalState.getYearAdmitted());
+        }
     }
-
-
-
-    /**
-    public PersonPresenter(IMVPContract.View aView) {
-        this.theActualView = aView;
-        this.personDB = new PersonDB_Mem();
-    }
-
-    @Override
-    public void addPersonToDB( String name, String age, String lastName ) {
-        Integer pAge = (Integer) Integer.parseInt( age );
-        Person p = new Person( name, pAge );
-        personDB.addPerson( p );
-
-        // All "Views" must implement this interface to update
-        // the information on the screen about the number in the DB.
-        theActualView.updateNumberInDB( personDB.numInDB() );
-    }
-
-    @Override
-    public void isPersonInTheDB(String name) {
-
-    }*/
 }
 
