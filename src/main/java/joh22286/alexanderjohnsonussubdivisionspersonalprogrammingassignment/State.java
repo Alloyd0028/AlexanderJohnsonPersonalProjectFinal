@@ -7,6 +7,7 @@ public class State extends Subdivisions {
     public String stateMotto;
     public Integer yearAdmitted;
 
+    // attributes of states
     public State(String subdivisionName, Float population, Float landArea, Float growthRate, String capital, String stateMotto, Integer yearAdmitted) {
         super(subdivisionName, population, landArea, growthRate);
         this.capital = capital;

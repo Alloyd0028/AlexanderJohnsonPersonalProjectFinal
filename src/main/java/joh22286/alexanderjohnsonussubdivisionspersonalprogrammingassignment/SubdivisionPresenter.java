@@ -10,9 +10,11 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
     private CountyDatabase countyDatabase;
     // Probably a good idea to make more hashmap databases
 
+    /** ----Not Used----
     private State s;
     private County c;
     // possibility for more subdivisions
+    */
 
     public SubdivisionPresenter(MVPContract.View view) {
         this.view = view;
@@ -20,15 +22,18 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
         this.stateDatabase = new StateDatabase();
         this.countyDatabase = new CountyDatabase();
 
-        //Unused--
+        /** ----Unused---- Hashmap idea works better
         //States
         this.s = new State("Minnesota", 5_700_000f, 87_000f, 0.005f, "Saint Paul", "L'Etoile du Nord", 1858);
         // make more states
         //Counties
         this.c = new County("St. Louis County", 200_000f, 6_860f, 0.0004f, "Duluth", false, "Minnesota");
         // make more counties
+         */
     }
 
+    //looks through the hashmap for a key that matches a state. If there is one, it will use that state,
+    // if not, prints "state not found". Always prints that even if you put in a county and there is a county.
     private State getState(String subdivisionName) {
         State state = stateDatabase.findStateByName(subdivisionName);
         if (state == null) {
@@ -47,9 +52,10 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
         return county;
 
     }
-    // Make Sure it Works For Counties Too!!! (or make a separate county method)
+    // Possibility for more subdivisions here.
 
 
+    //These methods are implemented from the MVP Contract
     // Should probably generalize this method to include counties and other subdivisions
     @Override
     public void loadState(String stateName) {

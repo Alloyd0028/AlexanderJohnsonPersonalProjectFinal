@@ -7,6 +7,7 @@ public class County extends Subdivisions{
     public boolean isUrban;
     public String parentState;
 
+    // attributes of counties
     public County(String subdivisionName, Float population, Float landArea, Float growthRate, String countySeat, boolean isUrban, String parentState) {
         super(subdivisionName, population, landArea, growthRate);
         this.countySeat = countySeat;
@@ -31,7 +32,7 @@ public class County extends Subdivisions{
         return isUrban;
     }
 
-    // might not be necessary
+    // Get the state that the county is inside of. It's not coonected to the state objects though.
     public String getParentState(){
         return parentState;
     }

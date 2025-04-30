@@ -2,11 +2,12 @@ package joh22286.alexanderjohnsonussubdivisionspersonalprogrammingassignment;
 
 public abstract class Subdivisions {
     public Float population;
-    // public Float populationDensity; Might not use, might "Make my own" instead
+    // public Float populationDensity; Might not use, might "Make my own" population density instead (pop/area).
     public Float landArea;
     public Float growthRate;
     String subdivisionName;
 
+    // attributes all subdivisions have
     public Subdivisions( String subdivisionName, Float population, Float landArea, Float growthRate){
         this.subdivisionName = subdivisionName;
         this.population = population;
@@ -27,6 +28,7 @@ public abstract class Subdivisions {
      * return populationDensity;
      * }
      */
+
     //Get Land Area
     public Float getLandArea() {
         return landArea;

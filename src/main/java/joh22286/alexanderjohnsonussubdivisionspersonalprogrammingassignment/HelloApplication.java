@@ -29,7 +29,7 @@ public class HelloApplication extends Application implements MVPContract.View {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        stage.setTitle("State Info");
+        stage.setTitle("State/County Info");
 
         myPresenter = new SubdivisionPresenter(this);
 
@@ -62,9 +62,34 @@ public class HelloApplication extends Application implements MVPContract.View {
         CheckBox futureProjectedPopulation = new CheckBox("Future Projected Population (50 years)");
         futureProjectedPopulation.setOnAction(this::futureProjectedPopulationChecked);
 
+        //State
+        CheckBox capital = new CheckBox("Capital of State: ");
+        capital.setOnAction(this::capitalChecked);
+
+        CheckBox stateMotto = new CheckBox("State Motto: ");
+        stateMotto.setOnAction(this::stateMottoChecked);
+
+        CheckBox yearAdmitted = new CheckBox("Year Admitted to the Union: ");
+        yearAdmitted.setOnAction(this::yearAdmittedChecked);
+
+        //County
+        CheckBox countySeat = new CheckBox("County Seat: ");
+        countySeat.setOnAction(this::countySeatChecked);
+
+        CheckBox isUrban = new CheckBox("Is County Urban (500,000+): ");
+        isUrban.setOnAction(this::isUrbanChecked);
+
+        CheckBox parentState = new CheckBox("State of County: ");
+        parentState.setOnAction(this::parentStateChecked);
+
+
+
         VBox vboxPane = new VBox(10);
         vboxPane.setPadding(new Insets(20, 30, 20, 30));
-        vboxPane.getChildren().addAll(messageLabel, tf_StateField, btnEnter, population, landArea, populationDensity, growthRate, futureProjectedPopulation, resultLabel);
+        vboxPane.getChildren().addAll
+                (messageLabel, tf_StateField, btnEnter, population, landArea, populationDensity, growthRate,
+                futureProjectedPopulation, capital, stateMotto, yearAdmitted, countySeat,isUrban, parentState,
+                resultLabel);
 
         // Set and show scene
         Scene scene = new Scene(vboxPane);
@@ -90,6 +115,33 @@ public class HelloApplication extends Application implements MVPContract.View {
 
     private void futureProjectedPopulationChecked(ActionEvent actionEvent) {
         myPresenter.onProjectedPopulationChecked();
+    }
+
+    //State
+    private void capitalChecked(ActionEvent actionEvent){
+        myPresenter.onCapitalChecked();
+    }
+
+    private void stateMottoChecked(ActionEvent actionEvent){
+        myPresenter.onStateMottoChecked();
+    }
+
+    private void yearAdmittedChecked(ActionEvent actionEvent){
+        myPresenter.onYearAdmittedChecked();
+    }
+
+    //County
+    private void countySeatChecked(ActionEvent actionEvent){
+        myPresenter.onCountySeatChecked();
+    }
+
+    private void isUrbanChecked(ActionEvent actionEvent){
+        myPresenter.onIsUrbanChecked();
+    }
+
+    private void parentStateChecked(ActionEvent actionEvent){
+        myPresenter.onParentStateChecked();
+
     }
 
     private void enterPressed(ActionEvent event){

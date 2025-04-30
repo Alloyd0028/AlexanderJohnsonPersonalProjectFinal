@@ -36,13 +36,7 @@ public interface MVPContract {
         void onParentStateChecked();
     }
 
-
-    //void addStateToDB( String name, String age, String lastName );
-    //void isPersonInTheDB(String name);
-
-    // The view's interface for this "contract".  Allows
-    // the presenter to update the information in the view's
-    // display.
+    // The view is implemented by the presenter, so it can update the model's data
     interface View {
         void showPopulation(Float population);
 

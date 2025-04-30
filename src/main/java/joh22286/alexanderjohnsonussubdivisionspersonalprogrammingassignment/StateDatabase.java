@@ -13,7 +13,7 @@ public class StateDatabase {
         stateDB = new HashMap<>();
 
         //THis is where states are added
-        // Add states to the database DATA from 2020 US Census
+        // Add states to the database, Data from 2020 US Census
         stateDB.put("Minnesota", new State("Minnesota", 5_700_000f, 87_000f, 0.005f, "Saint Paul", "L'Étoile du Nord", 1858));
        // Add More states eventually
     }
