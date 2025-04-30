@@ -3,8 +3,7 @@ package joh22286.alexanderjohnsonussubdivisionspersonalprogrammingassignment;
 public interface MVPContract {
 
 
-    // The presenter's interface for this "contract"
-    // Currently just add's person to the DB
+    // The presenter's interface
     interface Presenter {
         void loadState(String stateName);
 

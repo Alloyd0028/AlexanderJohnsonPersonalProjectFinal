@@ -46,7 +46,7 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
     private County getCounty(String subdivisionName){
         County county = countyDatabase.findCountyByName(subdivisionName);
         if (county == null) {
-            // Handle unknown state if name doesn't exist of isn't exact
+            // Handle unknown state if name doesn't exist or isn't exact
             System.out.println("County not found: " + subdivisionName);
         }
         return county;
@@ -61,16 +61,16 @@ public class SubdivisionPresenter implements MVPContract.Presenter{
     public void loadState(String stateName) {
         generalState = stateDatabase.findStateByName(stateName);
         if (generalState == null) {
-            System.out.println("State not found.");
-        }
+            System.out.println("State not found:.");
+        } else {System.out.println("State found!");}
 
     }
     @Override
     public void loadCounty(String countyName){
         generalCounty = countyDatabase.findCountyByName(countyName);
         if (generalCounty == null) {
-            System.out.println("County not found.");
-        }
+            System.out.println("County not found:");
+        } else {System.out.println("County found!");}
 
     }
 

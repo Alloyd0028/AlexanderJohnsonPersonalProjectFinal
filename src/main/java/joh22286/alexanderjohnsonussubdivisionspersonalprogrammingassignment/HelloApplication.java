@@ -42,44 +42,44 @@ public class HelloApplication extends Application implements MVPContract.View {
         tf_StateField.setPromptText("Enter State Name:");
 
         //Button so typed state name will connect with the state data, hopefully
-        Button btnEnter = new Button("Enter");
+        Button btnEnter = new Button("Enter (Press After You Input Your Subdivision)");
         btnEnter.setOnAction(this::enterPressed);
 
         // Check boxes so the suer can choose what they want to know
-        CheckBox population = new CheckBox("Population:");
+        Button population = new Button("Population:");
         population.setOnAction(this::populationChecked);
 
 
-        CheckBox landArea = new CheckBox("Land Area:");
+        Button landArea = new Button("Land Area:");
         landArea.setOnAction(this::landAreaChecked);
 
-        CheckBox populationDensity = new CheckBox("Population Density:");
+        Button populationDensity = new Button("Population Density:");
         populationDensity.setOnAction(this::populationDensityChecked);
 
-        CheckBox growthRate = new CheckBox("Growth Rate");
+        Button growthRate = new Button("Growth Rate");
         growthRate.setOnAction(this::growthRateChecked);
 
-        CheckBox futureProjectedPopulation = new CheckBox("Future Projected Population (50 years)");
+        Button futureProjectedPopulation = new Button("Future Projected Population (50 years)");
         futureProjectedPopulation.setOnAction(this::futureProjectedPopulationChecked);
 
         //State
-        CheckBox capital = new CheckBox("Capital of State: ");
+        Button capital = new Button("Capital of State: ");
         capital.setOnAction(this::capitalChecked);
 
-        CheckBox stateMotto = new CheckBox("State Motto: ");
+        Button stateMotto = new Button("State Motto: ");
         stateMotto.setOnAction(this::stateMottoChecked);
 
-        CheckBox yearAdmitted = new CheckBox("Year Admitted to the Union: ");
+        Button yearAdmitted = new Button("Year Admitted to the Union: ");
         yearAdmitted.setOnAction(this::yearAdmittedChecked);
 
         //County
-        CheckBox countySeat = new CheckBox("County Seat: ");
+        Button countySeat = new Button("County Seat: ");
         countySeat.setOnAction(this::countySeatChecked);
 
-        CheckBox isUrban = new CheckBox("Is County Urban (500,000+): ");
+        Button isUrban = new Button("Is County Urban (500,000+): ");
         isUrban.setOnAction(this::isUrbanChecked);
 
-        CheckBox parentState = new CheckBox("State of County: ");
+        Button parentState = new Button("State of County: ");
         parentState.setOnAction(this::parentStateChecked);
 
 

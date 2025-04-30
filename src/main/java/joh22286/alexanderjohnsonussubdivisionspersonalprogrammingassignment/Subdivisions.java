@@ -40,7 +40,7 @@ public abstract class Subdivisions {
     }
 
     // Get the subdivision's name
-    public String getSubdivisionname() {
+    public String getSubdivisionName() {
         return subdivisionName;
     }
 
